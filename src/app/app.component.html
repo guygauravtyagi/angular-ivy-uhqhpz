@@ -1,4 +1,65 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div class="main-container">
+  <div class="search-container">
+    <label>Container</label>
+    <div>
+      <input type="checkbox" name="male" (change)="genderCheck($event)" /><label
+        >Male</label
+      >
+      <input
+        type="checkbox"
+        name="female"
+        (change)="genderCheck($event)"
+      /><label>Female</label>
+      <input
+        type="search"
+        name="search"
+        placeholder="Whom are you looking for?"
+        (input)="filterThis($event)"
+      />
+    </div>
+    <ul>
+      <li *ngFor="let item of filterData">
+        <div>
+          <label>{{ item.id }}</label>
+        </div>
+        <div>
+          <label>{{ item.first_name }}</label>
+        </div>
+        <div>
+          <label>{{ item.last_name }}</label>
+        </div>
+        <div>
+          <label>{{ item.email }}</label>
+        </div>
+        <div>
+          <label>{{ item.gender }}</label>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="add-container">
+    <label>Add New Candidate</label>
+    <form [formGroup]="addForm">
+      <input
+        type="text"
+        placeholder="FirstName"
+        formControlName="firstName"
+        required
+      />
+      <input
+        type="text"
+        placeholder="LastName"
+        formControlName="lastName"
+        required
+      />
+      <input type="text" placeholder="email" formControlName="email" required />
+      <input type="radio" value="male" formControlName="male" /><label
+        >Male</label
+      >
+      <input type="radio" value="female" formControlName="female" /><label
+        >Female</label
+      >
+      <input type="button" value="Add" (click)="addMember()" />
+    </form>
+  </div>
+</div>
